@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+
+# Clon de terceros (no forma parte del monorepo Royal Casino)
+mortalsoft-casino/

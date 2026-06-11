@@ -1,0 +1,156 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.sidebar-brand span {
+  font-size: 1.5rem;
+}
+
+.sidebar-brand h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.nav-item:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent-light);
+}
+
+.refresh-btn {
+  margin-top: auto;
+  background: var(--card);
+  color: var(--text-muted);
+  padding: 10px;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+}
+
+.refresh-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.content {
+  flex: 1;
+  margin-left: 240px;
+  padding: 32px;
+}
+
+.content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-card.success { border-color: var(--success); }
+.stat-card.danger { border-color: var(--danger); }
+
+.stat-icon {
+  font-size: 1.8rem;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.table-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.money {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px !important;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge.win { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+.badge.loss { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+.badge.push { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+
+.badge.type-deposit { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+.badge.type-withdraw { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+.badge.type-bet { background: rgba(99, 102, 241, 0.15); color: var(--accent-light); }
+.badge.type-win { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
