@@ -1,46 +1,12 @@
-.login-screen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.login-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 48px;
-  max-width: 420px;
-  width: 100%;
-  text-align: center;
-}
-
-.login-card h1 {
-  font-size: 2.2rem;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  color: var(--text-muted);
-  margin-bottom: 32px;
-}
-
-.login-card form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.bonus {
-  margin-top: 20px;
-  color: var(--gold-light);
-  font-size: 0.9rem;
-}
-
 .app {
   min-height: 100vh;
+}
+
+.app-lobby {
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(212, 168, 67, 0.07), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 100%, rgba(120, 60, 200, 0.05), transparent 45%),
+    var(--bg-dark);
 }
 
 .app-roulette {
@@ -70,32 +36,96 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 32px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(20, 27, 45, 0.8);
-  backdrop-filter: blur(12px);
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.12);
+  background: rgba(8, 10, 18, 0.88);
+  backdrop-filter: blur(16px);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
-.app-plinko .header {
-  background: rgba(6, 6, 15, 0.95);
-  border-bottom-color: #18183a;
-  padding: 10px 20px;
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Playfair Display", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.2s;
 }
 
-.logo {
-  font-size: 1.5rem;
+.logo:hover {
   color: var(--gold);
-  cursor: pointer;
+}
+
+.logo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(212, 168, 67, 0.2), rgba(212, 168, 67, 0.06));
+  border: 1px solid rgba(212, 168, 67, 0.3);
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+.balance-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 10px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(212, 168, 67, 0.08);
+  border: 1px solid rgba(212, 168, 67, 0.2);
+}
+
+.balance-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1;
+  margin-bottom: 2px;
 }
 
 .balance {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--gold-light);
-  margin-right: 16px;
+  line-height: 1.2;
+}
+
+.balance::before {
+  content: "$";
+  margin-right: 2px;
+  opacity: 0.7;
+}
+
+.btn-deposit {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: #1a1205;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 16px rgba(212, 168, 67, 0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-deposit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 168, 67, 0.35);
 }
 
 .header-right {
@@ -104,64 +134,9 @@
 }
 
 .main {
-  max-width: 1200px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 32px 24px;
-}
-
-.lobby {
-  display: flex;
-  flex-direction: column;
-}
-
-.lobby h2 {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
-.welcome {
-  color: var(--text-muted);
-  margin-bottom: 32px;
-}
-
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.game-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.game-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--gold-dark);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(212, 168, 67, 0.1);
-}
-
-.game-icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
-}
-
-.game-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 8px;
-  color: var(--gold-light);
-}
-
-.game-card p {
-  color: var(--text-muted);
-  margin-bottom: 20px;
-  font-size: 0.9rem;
+  padding: 16px 16px 32px;
 }
 
 .btn-gold {
@@ -186,6 +161,12 @@
 
 .btn-outline:hover {
   background: rgba(212, 168, 67, 0.1);
+}
+
+.app-plinko .header {
+  background: rgba(6, 6, 15, 0.95);
+  border-bottom-color: #18183a;
+  padding: 10px 20px;
 }
 
 .game-view {

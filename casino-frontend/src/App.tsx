@@ -3,7 +3,8 @@ import type { GameInfo, User } from "./api";
 import { createUser, getGames, getUser } from "./api";
 import Blackjack from "./components/Blackjack";
 import DepositModal from "./components/DepositModal";
-import HeroCarousel from "./components/HeroCarousel";
+import Lobby from "./components/Lobby";
+import LoginScreen from "./components/LoginScreen";
 import Minesweeper from "./components/Minesweeper";
 import Plinko from "./components/Plinko";
 import Roulette from "./components/Roulette";
@@ -59,75 +60,48 @@ export default function App() {
 
   if (!user) {
     return (
-      <div className="login-screen">
-        <div className="login-card">
-          <h1>🎰 Royal Casino</h1>
-          <p className="subtitle">Entra y prueba tu suerte</p>
-          <form onSubmit={handleLogin}>
-            <input
-              placeholder="Nombre de usuario"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <input
-              type="email"
-              placeholder="Correo electrónico"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button type="submit" className="btn-gold" disabled={loading}>
-              {loading ? "Entrando..." : "Comenzar a jugar"}
-            </button>
-          </form>
-          <p className="bonus">Recibes $1,000 de bienvenida</p>
-        </div>
-      </div>
+      <LoginScreen
+        username={username}
+        email={email}
+        loading={loading}
+        onUsernameChange={setUsername}
+        onEmailChange={setEmail}
+        onSubmit={handleLogin}
+      />
     );
   }
 
   return (
-    <div className={`app ${view === "roulette" ? "app-roulette" : ""} ${view === "plinko" ? "app-plinko" : ""}`}>
+    <div className={`app ${view === "lobby" ? "app-lobby" : ""} ${view === "roulette" ? "app-roulette" : ""} ${view === "plinko" ? "app-plinko" : ""}`}>
       {view !== "roulette" && view !== "plinko" && (
         <header className="header">
           <div className="header-left">
-            <h1 onClick={() => setView("lobby")} className="logo">🎰 Royal Casino</h1>
+            <button type="button" onClick={() => setView("lobby")} className="logo">
+              <span className="logo-icon">♛</span>
+              Royal Casino
+            </button>
           </div>
           <div className="header-right">
-            <span className="balance">💰 ${user.balance.toLocaleString()}</span>
-            <button className="btn-outline" onClick={openDeposit}>+ Depositar</button>
+            <div className="balance-pill">
+              <span className="balance-label">Saldo</span>
+              <span className="balance">${user.balance.toLocaleString()}</span>
+            </div>
+            <button className="btn-deposit" onClick={openDeposit}>
+              + Depositar
+            </button>
           </div>
         </header>
       )}
 
       <main className={view === "roulette" ? "main-roulette" : view === "plinko" ? "main-plinko" : "main"}>
         {view === "lobby" && (
-          <div className="lobby">
-            <HeroCarousel />
-            <h2>Juegos disponibles</h2>
-            <p className="welcome">Bienvenido, <strong>{user.username}</strong></p>
-            <div className="game-grid">
-              {games.map((game) => (
-                <div
-                  key={game.id}
-                  className="game-card"
-                  onClick={() => setView(game.id as View)}
-                >
-                  <div className="game-icon">
-                    {game.id === "slots" && "🎰"}
-                    {game.id === "blackjack" && "🃏"}
-                    {game.id === "roulette" && "🎯"}
-                    {game.id === "plinko" && "🔻"}
-                    {game.id === "minesweeper" && "💣"}
-                  </div>
-                  <h3>{game.name}</h3>
-                  <p>Apuesta: ${game.minBet} – ${game.maxBet}</p>
-                  <button className="btn-gold">Jugar</button>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Lobby
+            username={user.username}
+            balance={user.balance}
+            games={games}
+            onSelectGame={(id) => setView(id)}
+            onDeposit={openDeposit}
+          />
         )}
 
         {view === "slots" && (
