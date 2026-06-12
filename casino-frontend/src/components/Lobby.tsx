@@ -14,33 +14,33 @@ interface Props {
 
 const GAME_META: Record<
   string,
-  { icon: string; tag?: string; desc: string; accent: string }
+  { image: string; tag?: string; desc: string; accent: string }
 > = {
   slots: {
-    icon: "🎰",
+    image: "/game-images/slots.png",
     tag: "Popular",
     desc: "3 carretes · multiplicadores hasta x50",
     accent: "#e8c547",
   },
   blackjack: {
-    icon: "🃏",
+    image: "/game-images/blackjack.png",
     desc: "Clásico 21 contra la casa",
     accent: "#2ecc71",
   },
   roulette: {
-    icon: "🎯",
+    image: "/game-images/roulette.png",
     tag: "Clásico",
     desc: "Rojo, negro o tu número de la suerte",
     accent: "#e74c3c",
   },
   plinko: {
-    icon: "🔻",
+    image: "/game-images/plinko.png",
     tag: "Hot",
     desc: "Deja caer la bola y multiplica",
     accent: "#00d4ff",
   },
   minesweeper: {
-    icon: "💣",
+    image: "/game-images/minesweeper.png",
     tag: "Nuevo",
     desc: "Evita bombas y retira a tiempo",
     accent: "#3dd179",
@@ -83,7 +83,7 @@ export default function Lobby({ username, balance, games, onSelectGame, onDeposi
       <div className="game-grid">
         {games.map((game) => {
           const meta = GAME_META[game.id] ?? {
-            icon: "🎲",
+            image: "/game-images/slots.png",
             desc: "Juega ahora",
             accent: "#e8c547",
           };
@@ -100,15 +100,18 @@ export default function Lobby({ username, balance, games, onSelectGame, onDeposi
             >
               {meta.tag && <span className="game-tag">{meta.tag}</span>}
               <div className="game-card-glow" aria-hidden="true" />
-              <div className="game-icon-wrap">
-                <span className="game-icon">{meta.icon}</span>
+              <div className="game-thumb">
+                <img src={meta.image} alt={game.name} className="game-thumb-img" draggable={false} />
+                <div className="game-thumb-shade" aria-hidden="true" />
               </div>
-              <h4>{game.name}</h4>
-              <p className="game-desc">{meta.desc}</p>
-              <div className="game-meta">
-                <span>${game.minBet} – ${game.maxBet}</span>
+              <div className="game-card-body">
+                <h4>{game.name}</h4>
+                <p className="game-desc">{meta.desc}</p>
+                <div className="game-meta">
+                  <span>${game.minBet} – ${game.maxBet}</span>
+                </div>
+                <span className="game-play-btn">Jugar ahora</span>
               </div>
-              <span className="game-play-btn">Jugar ahora</span>
             </article>
           );
         })}
